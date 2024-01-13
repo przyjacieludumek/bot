@@ -1,0 +1,26 @@
+import discord
+
+# Zmienna intencje przechowuje uprawnienia bota
+intents = discord.Intents.default()
+# Włączanie uprawnienia do czytania wiadomości
+intents.message_content = True
+# Tworzenie bota w zmiennej klienta i przekazanie mu uprawnień
+client = discord.Client(intents=intents)
+
+@client.event
+async def on_ready():
+    print(f'Zalogowaliśmy się jako {client.user}')
+
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+    if message.content.startswith('/hello'):
+        await message.channel.send("Cześć!")
+        await message.channel.send("https://tenor.com/view/kto-lbow-hi-hello-hi-there-gif-25347432")
+    elif message.content.startswith('/bye'):
+        await message.channel.send("https://tenor.com/view/peach-and-goma-gif-9872673187939618574")
+    else:
+        await message.channel.send()
+
+client.run("MTE3NzkyMjQzNTM0NjA5MjA3Mg.GYiyA3.LzVfGLHUkm0biyaRJOYs6gj0EfmTp_mJ5Pqc-o")
